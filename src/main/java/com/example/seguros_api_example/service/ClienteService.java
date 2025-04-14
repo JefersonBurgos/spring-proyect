@@ -1,39 +1,26 @@
 package com.example.seguros_api_example.service;
 
+import com.example.seguros_api_example.dto.ClienteDTO;
 import com.example.seguros_api_example.entity.Cliente;
 import com.example.seguros_api_example.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ClienteService {
+public interface ClienteService {
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    List<ClienteDTO> findByNombreAndEmail(String nombre, String email);
 
-    public List<Cliente> findByNombreAndEmail(String nombre, String email){
-        return clienteRepository.findByNombreAndEmail(nombre,email);
-    }
+    List<ClienteDTO> obtenerTodos();
 
-    public List<Cliente> obtenerTodos() {
-        return clienteRepository.findAll();
-    }
+    Cliente guardar(Cliente cliente);
 
-    public Cliente guardar(Cliente cliente) {
-        return clienteRepository.save(cliente);
-    }
+    Cliente actualizar(Cliente cliente);
 
-    public Cliente actualizar(Cliente cliente) {
-        return clienteRepository.save(cliente);
-    }
+    Cliente obtenerPorId(Long id);
 
-    public Cliente obtenerPorId(Long id) {
-        return clienteRepository.findById(id).orElse(null);
-    }
-
-    public void eliminar(Long id) {
-        clienteRepository.deleteById(id);
-    }
+    void eliminar(Long id);
 }
