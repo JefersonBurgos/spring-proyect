@@ -38,6 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
 
         for (Cliente cliente : clientList) {
             ClienteDTO client = new ClienteDTO();
+            client.setId(cliente.getId());
             client.setTelefono(cliente.getTelefono());
             client.setEmail(cliente.getEmail());
             client.setNombre(cliente.getNombre());
